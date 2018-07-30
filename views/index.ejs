@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My Express App</title>
+	</head>
+	<body>
+		<% include partials/header %>
+
+		<h2>Add Customer</h2>
+		<ul>
+		<% if(errors){ %>
+			<h4>ERRORS</h4>
+			<% errors.forEach(function(errors){ %>
+				<li>
+					<%= errors.msg; %>
+				</li>
+			<% }); %>
+			<p>No More errors...</p>
+		<% } %>
+		</ul>
+		<form method="POST" action="/users/add">
+			<label>First Name</label>
+			<input type="text" name="first_name" />
+			<br>
+			<label>Last Name</label>
+			<input type="text" name="last_name" />
+			<br>
+			<label>Email</label>
+			<input type="text" name="email" />
+			<br>
+			<input type="submit" value="submit" />	
+		</form>
+
+		<h2>
+			<%= title %>
+		</h2>
+		<div>
+			<ul>
+				<% users.forEach(function(users){ %>
+				<li>
+					<b>Name: </b><%= users.first_name; %> <%= users.last_name; %> 
+					<br>
+					<b>Email: </b><%= users.email; %>
+					<br>
+					<a href="#" class="deleteUser" data-id="<%= users._id %>">Delete</a>
+				</li>
+
+				<% }); %>
+			</ul>
+		</div>
+
+		<% include partials/footer %>
+
+
+	</body>
+</html>
